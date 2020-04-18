@@ -7,7 +7,7 @@ const server = express();
 
 server.use(helmet, logger, express.json());
 
-// const projects = require('./routers/projects-router.js');
+const projects = require('./routers/projects-router.js');
 
 server
 	.route('/')
@@ -15,7 +15,7 @@ server
 		res.send(`Ludicrous speed, GO!`);
 	});
 
-// server.use('/api/projects', projects);
-// server.use('/projects', projects);
+server.use('/api/projects', projects);
+server.use('/projects', projects);
 
 module.exports = server;
