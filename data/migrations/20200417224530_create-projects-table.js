@@ -26,39 +26,45 @@ exports.up = function(knex) {
 		})
 		.createTable('projects_tasks', tbl => {
 			tbl.increments();
-			tbl.foreign('project_id').references('projects.id')
+			tbl.integer('project_id')
+				.references('id')
+				.inTable('projects')
 				.notNullable()
 				.unsigned()
 				.onDelete('CASCADE')
 				.onUpdate('CASCADE');
-			tbl.foreign('task_id').references('tasks.id')
+			tbl.integer('task_id')
+				.references('id')
+				.inTable('tasks')
 				.notNullable()
 				.unsigned()
 				.onDelete('CASCADE')
 				.onUpdate('CASCADE');
-			tbl.primary(['project_id', 'task_id']);
 		})
 		.createTable('projects_resources', tbl => {
 			tbl.increments();
-			tbl.foreign('project_id').references('projects.id')
+			tbl.integer('project_id')
+				.references('id')
+				.inTable('projects')
 				.notNullable()
 				.unsigned()
 				.onDelete('CASCADE')
 				.onUpdate('CASCADE');
-			tbl.foreign('resource_id').references('resources.id')
+			tbl.integer('resource_id')
+				.references('id')
+				.inTable('resources')
 				.notNullable()
 				.unsigned()
 				.onDelete('CASCADE')
 				.onUpdate('CASCADE');
-			tbl.primary(['project_id', 'resource_id']);
 		})
 };
 
 exports.down = function(knex) {
-  return knex.schema
-	  .dropTableIfExists('projects_resources')
-	  .dropTableIfExists('projects_tasks')
-	  .dropTableIfExists('projects')
-	  .dropTableIfExists('resources')
-	  .dropTableIfExists('tasks')
+	return knex.schema
+		.dropTableIfExists('projects_resources')
+		.dropTableIfExists('projects_tasks')
+		.dropTableIfExists('projects')
+		.dropTableIfExists('resources')
+		.dropTableIfExists('tasks')
 };
