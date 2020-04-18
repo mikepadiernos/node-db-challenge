@@ -5,7 +5,7 @@ const middle = require('./middleware/middleware.js');
 const logger = middle.logger;
 const server = express();
 
-server.use(helmet, logger, express.json());
+server.use(helmet(), logger, express.json());
 
 const projects = require('./routers/projects-router.js');
 const resources = require('./routers/resources-router.js');

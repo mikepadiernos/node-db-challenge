@@ -18,7 +18,7 @@ router
 		db('tasks')
 			.insert(task)
 			.then(id => {
-				console.log("task: ",id);
+				console.log("task: ", id);
 				res.json({success: true, message: "Task added", id: id, task})
 			})
 			.catch(error => {

@@ -18,7 +18,7 @@ router
 		db('projects')
 			.insert(project)
 			.then(id => {
-				console.log("project: ",id);
+				console.log("project: ", id);
 				res.json({success: true, message: "Project added", id: id, project})
 			})
 			.catch(error => {
@@ -28,7 +28,20 @@ router
 
 router
 	.route('/:id')
-	.get((req, res) => {})
+	.get((req, res) => {
+		const id = req.params;
+		db('projects')
+			.where(id)
+			.first()
+			.then(project => {
+				project
+					? res.json({success: true, message: "Project found", project})
+					: res.status(400).json({success: false, message: "Project not found"})
+			})
+			.catch(error => {
+				res.status(500).json({success: false, message: "Unable to retrieve project", error})
+			})
+	})
 	.put((req, res) => {})
 	.delete((req, res) => {});
 
