@@ -24,13 +24,17 @@ router
 			.catch(error => {
 				res.status(500).json({success: false, message: "Unable to add resource", error})
 			})
-	});
-
-router
+	})
 	.route('/:id')
-	.get((req, res) => {})
-	.put((req, res) => {})
-	.delete((req, res) => {});
+	.get((req, res) => {
+
+	})
+	.put((req, res) => {
+
+	})
+	.delete((req, res) => {
+
+	});
 
 
 module.exports = router;
