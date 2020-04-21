@@ -6,7 +6,7 @@ module.exports = {
 
 function findTaskById(id) {
 	return db('tasks')
-		.join('projects', 'projects.id', 'tasks.project_id')
+		// .select('*')
 		.select(
 			'projects.name',
 			'projects.description',
@@ -16,6 +16,7 @@ function findTaskById(id) {
 			'tasks.notes',
 			'tasks.status'
 		)
+		.join('projects', 'projects.id', 'tasks.project_id')
 		.where('tasks.id', id)
-		// .first();
+		.first();
 }

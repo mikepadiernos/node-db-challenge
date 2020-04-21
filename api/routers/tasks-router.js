@@ -30,7 +30,7 @@ router
 router
 	.route('/:id')
 	.get((req, res) => {
-		const id = req.params;
+		const id = req.params.id;
 		helper.findTaskById(id)
 			.then(task => {
 				console.log('task', task);
