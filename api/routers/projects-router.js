@@ -24,7 +24,9 @@ router
 			.catch(error => {
 				res.status(500).json({success: false, message: "Unable to add project", error})
 			})
-	})
+	});
+
+router
 	.route('/:id')
 	.get((req, res) => {
 		const id = req.params;
@@ -40,19 +42,15 @@ router
 				res.status(500).json({success: false, message: "Unable to retrieve project", error})
 			})
 	})
-	.put((req, res) => {
+	.put((req, res) => {})
+	.delete((req, res) => {});
 
-	})
-	.delete((req, res) => {
-
-	})
+router
 	.route('/:id/resources')
-	.get((req, res) => {
+	.get((req, res) => {});
 
-	})
+router
 	.route('/:id/tasks')
-	.get((req, res) => {
-
-	});
+	.get((req, res) => {});
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../../data/db-config');
+const helper = require('../helpers/tasks-helper.js')
 
 router
 	.route('/')
@@ -28,7 +29,21 @@ router
 
 router
 	.route('/:id')
-	.get((req, res) => {})
+	.get((req, res) => {
+		const id = req.params;
+		helper.findTaskById(id)
+			.then(task => {
+				console.log('task', task);
+				console.log('id', id);
+				task
+					? res.json({success: true, message: "Task found", task})
+					: res.status(400).json({success: false, message: "Task not found"})
+			})
+			.catch(error => {
+				res.status(500).json({success: false, message: "Unable to retrieve task", error})
+			})
+
+	})
 	.put((req, res) => {})
 	.delete((req, res) => {});
 
